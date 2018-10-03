@@ -18,29 +18,44 @@ import org.tyaa.customannotations.controller.SessionController;
 /**
  *
  * @author student
+ * Контейнер, которому через конструктор нужно передать
+ * объект, подлежащий управлению
  */
 public class Injecter {
     
     public void addControlledInstance(Object _o) throws IllegalArgumentException, IllegalAccessException, InstantiationException, InvocationTargetException{
     
+        //Проверка полученного объекта на соответствие
+        //определенному типа
         if (_o instanceof SessionController) {
             
             SessionController sc = (SessionController)_o;
+            //Получаем описание управляемого объекта
             Class targetClass = sc.getClass();
+            //Получаем описание всех полей управляемого объекта
             Field[] fields = targetClass.getFields();
+            //Перебираем описания всех полей управляемого объекта
             for(Field field : fields){
+                //Работаем только с теми полями, которые помечены
+                //нашей аннотацией Inject
                 if(field.isAnnotationPresent(Inject.class)) {
-                    
+                    //Получаем описание помеченного поля
                     Class injectingInstatceClass = field.getType();
-                    Type injectingInstatceType = field.getAnnotatedType().getType();
-                    //System.out.println(injectingInstatceType);
-                    Constructor constructor = injectingInstatceClass.getDeclaredConstructors()[0];
+                    //Получаем описание первого конструктора из
+                    //описания текущего помеченного поля
+                    //(должен быть один и без параметров)
+                    Constructor constructor =
+                            injectingInstatceClass.getDeclaredConstructors()[0];
+                    //Открывает доступ к конструктору
                     constructor.setAccessible(true);  
+                    //Открывает доступ к полю
                     field.setAccessible(true);
+                    //В управляемом объекте по ссылке из переменной sc
+                    //находим поле, соответствующее описанию field,
+                    //вызываем конструктор внедряемого типа,
+                    //приводим полученную ссылку к нужному типу
+                    //и инициализируем ею поле
                     field.set(sc, (injectingInstatceClass.cast(constructor.newInstance())));
-                    //field.set(sc, (injectingClass.getConstructors()[0].getAnnotatedReturnType())constructor.newInstance());
-                    //field.set(sc, (Object)constructor.newInstance());
-                    //break;
                 }
             }
         }

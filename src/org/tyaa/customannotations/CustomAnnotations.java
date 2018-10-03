@@ -41,14 +41,14 @@ public class CustomAnnotations {
         //4. запустить приложение и проверить его работоспособность (не должно быть исключений)
         
         
-        /*Tester t = new Tester();
+        Tester t = new Tester();
         t.test(Class.forName("org.tyaa.customannotations.bean.Cookies"));
-        t.test(Class.forName("org.tyaa.customannotations.bean.AnotherCookies"));*/
+        t.test(Class.forName("org.tyaa.customannotations.bean.AnotherCookies"));
         
-        Injecter injecter = new Injecter();
+        /*Injecter injecter = new Injecter();
         SessionController sc = new SessionController();
         injecter.addControlledInstance(sc);
-        sc.doWork();
+        sc.doWork();*/
     }
     
 }
