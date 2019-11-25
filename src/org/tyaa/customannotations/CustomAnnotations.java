@@ -6,7 +6,7 @@
 package org.tyaa.customannotations;
 
 import java.lang.reflect.InvocationTargetException;
-import org.tyaa.customannotations.container.Injecter;
+import org.tyaa.customannotations.container.Injector;
 import org.tyaa.customannotations.container.Tester;
 import org.tyaa.customannotations.controller.SessionController;
 
@@ -45,10 +45,9 @@ public class CustomAnnotations {
         t.test(Class.forName("org.tyaa.customannotations.bean.Cookies"));
         t.test(Class.forName("org.tyaa.customannotations.bean.AnotherCookies"));
         
-        /*Injecter injecter = new Injecter();
+        Injector injector = new Injector();
         SessionController sc = new SessionController();
-        injecter.addControlledInstance(sc);
-        sc.doWork();*/
+        injector.addControlledInstance(sc);
+        sc.doWork();
     }
-    
 }
