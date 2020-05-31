@@ -14,7 +14,7 @@ import org.tyaa.customannotations.controller.SessionController;
  *
  * @author yurii
  */
-public class CustomAnnotations {
+public class  CustomAnnotations {
 
     /**
      * @param args the command line arguments
@@ -41,13 +41,24 @@ public class CustomAnnotations {
         //4. запустить приложение и проверить его работоспособность (не должно быть исключений)
         
         
+//        Tester t = new Tester();
+//        t.test(Class.forName("org.tyaa.customannotations.bean.Cookies"));
+//        t.test(Class.forName("org.tyaa.customannotations.bean.AnotherCookies"));
+//
+//        Injector injector = new Injector();
+//        SessionController sc = new SessionController();
+//        injector.addControlledInstance(sc);
+//        sc.doWork();
+
+        System.out.println("TEST");
         Tester t = new Tester();
-        t.test(Class.forName("org.tyaa.customannotations.bean.Cookies"));
-        t.test(Class.forName("org.tyaa.customannotations.bean.AnotherCookies"));
-        
+        t.test(Class.forName("org.tyaa.customannotations.bean.Session"));
+
+        System.out.println("INJECTOR");
         Injector injector = new Injector();
         SessionController sc = new SessionController();
         injector.addControlledInstance(sc);
         sc.doWork();
+
     }
 }

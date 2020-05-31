@@ -7,6 +7,7 @@ package org.tyaa.customannotations.controller;
 
 import org.tyaa.customannotations.annotations.Inject;
 import org.tyaa.customannotations.bean.Cookies;
+import org.tyaa.customannotations.bean.Session;
 
 /**
  *
@@ -15,16 +16,23 @@ import org.tyaa.customannotations.bean.Cookies;
 
 public class SessionController {
     
+//    @Inject
+//    public Cookies mCookies;
+
     @Inject
-    public Cookies mCookies;
+    public Session mSession;
     
     //@Inject
     //public String mString;
     
     public void doWork(){
-    
-        mCookies.createCookie();
-        mCookies.stopCookie();
+
+        mSession.createSession();
+        mSession.stopSession();
+
+//        mCookies.createCookie();
+//        mCookies.stopCookie();
+
         //mString.getBytes();
     }
 }
